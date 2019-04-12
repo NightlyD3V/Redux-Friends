@@ -30,7 +30,7 @@ export const rootReducer = (state=initialState, action) => {
             ...state,
             error: '',   
             fetchingData: false,
-            loggedIn: true
+            loggedIn: true,
         }
         case LOGIN_FAILURE:
         return {

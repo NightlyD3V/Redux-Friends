@@ -32,13 +32,14 @@ export const login = creds => dispatch => {
         })
 }
 
-export const getTheFUCKINGFRIENDS = () => dispatch => {
-    dispatch({ FETCHING_FRIENDS });
+export const friends = () => dispatch => {
+    dispatch({ type: FETCHING_FRIENDS });
     axios
-        .post('http://localhost:5000/api/friends', {headers: {authorization:localStorage.getItem('creds')}}) 
+        .get('http://localhost:5000/api/friends', 
+        {headers: {authorization:localStorage.getItem('token')}}) 
         .then(res => {
             console.log(res)
-            dispatch({ type: FETCHING_FRIENDS, payload: res.data})
+            dispatch({ type: FRIENDS_SUCCESS, payload: res.data})
         })
         .catch(err => {
             console.log(err)

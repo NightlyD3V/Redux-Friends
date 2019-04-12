@@ -9,29 +9,28 @@ import React from 'react';
 //                                                                         
 
 import { connect } from 'react-redux';
-import { getTheFUCKINGFRIENDS } from '../actions';
+import { friends } from '../actions';
 
 class FriendList extends React.Component {
     
-    componenetDidMount() {
-        this.props.getTheFUCKINGFRIENDS();
+    componentDidMount() {
+        this.props.friends();
     }
 
-    render(){
-        //console.log(this.state);
-        return (
-            {this.state.data.map((friends) => {
-                <h1>{friends.name}</h1>
-            })}
-        )
+    render() {
+        return this.props.data.map((friend) => {
+            return (
+                <h1>{friend.name}</h1>
+            )
+        })
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
+    console.log(state.data);
     return {
         data: state.data
     }
 }
 
-export default connect(mapStateToProps, { getTheFUCKINGFRIENDS } )(FriendList);
+export default connect(mapStateToProps, { friends } )(FriendList);
